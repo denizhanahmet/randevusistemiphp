@@ -16,58 +16,67 @@ class UserController {
 <head>
     <meta charset="UTF-8">
     <title>Randevu Al</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body>
-    <div class="container mt-5" style="max-width:600px;">
-        <h1 class="mb-4">Randevu Al</h1>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="mb-4 text-center text-primary">Randevu Al</h2>
 
-        <?php if ($errors): ?>
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                <?php foreach ($errors as $error): ?>
-                <li><?= htmlspecialchars($error) ?></li>
-                <?php endforeach; ?>
-            </ul>
+                        <?php if ($errors): ?>
+                        <div class="alert alert-danger">
+                            <ul class="mb-0">
+                                <?php foreach ($errors as $error): ?>
+                                <li><?= htmlspecialchars($error) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
+                        <?php endif; ?>
+
+                        <form method="post" action="">
+                            <input type="hidden" name="csrf_token"
+                                value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
+
+                            <div class="mb-3">
+                                <label for="name" class="form-label">İsim</label>
+                                <input type="text" class="form-control" id="name" name="name"
+                                    value="<?= htmlspecialchars($old['name'] ?? '') ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon Numarası</label>
+                                <input type="text" class="form-control" id="phone" name="phone"
+                                    value="<?= htmlspecialchars($old['phone'] ?? '') ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="appointment_date" class="form-label">Tarih</label>
+                                <input type="date" class="form-control" id="appointment_date" name="appointment_date"
+                                    value="<?= htmlspecialchars($old['appointment_date'] ?? '') ?>" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="appointment_time" class="form-label">Saat</label>
+                                <input type="time" class="form-control" id="appointment_time" name="appointment_time"
+                                    value="<?= htmlspecialchars($old['appointment_time'] ?? '') ?>" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">Randevu Al</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <?php endif; ?>
-
-        <form method="post" action="">
-            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($_SESSION['csrf_token']) ?>">
-
-            <div class="mb-3">
-                <label for="name" class="form-label">İsim</label>
-                <input type="text" class="form-control" id="name" name="name"
-                    value="<?= htmlspecialchars($old['name'] ?? '') ?>" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email"
-                    value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="phone" class="form-label">Telefon Numarası</label>
-                <input type="text" class="form-control" id="phone" name="phone"
-                    value="<?= htmlspecialchars($old['phone'] ?? '') ?>" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="appointment_date" class="form-label">Tarih</label>
-                <input type="date" class="form-control" id="appointment_date" name="appointment_date"
-                    value="<?= htmlspecialchars($old['appointment_date'] ?? '') ?>" required>
-            </div>
-
-            <div class="mb-3">
-                <label for="appointment_time" class="form-label">Saat</label>
-                <input type="time" class="form-control" id="appointment_time" name="appointment_time"
-                    value="<?= htmlspecialchars($old['appointment_time'] ?? '') ?>" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Randevu Al</button>
-        </form>
     </div>
 </body>
 
